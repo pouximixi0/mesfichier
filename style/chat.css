@@ -1,0 +1,152 @@
+body {
+  background-color: #333334;
+}
+
+.chatEntry {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.divMessage {
+  --glow-color: #67676d;
+  --glow-spread-color: #5a5a5c;
+  --enhanced-glow-color: #67676d;
+  --btn-color: rgb(78, 78, 78);
+
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  color: black;
+  border: 5px solid var(--glow-color);
+  background-color: var(--btn-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+
+  margin-left: 50%;
+  margin-left: 50%;
+  font-size: 10px;
+  margin: auto;
+  margin-top: 10px;
+  align-items: center;
+  width: 200px;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.divMessageYou {
+  --glow-color: #157edb;
+  --glow-spread-color: #0c66b6;
+  --enhanced-glow-color: #157edb;
+  --btn-color: #157edb;
+
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  color: black;
+  border: 5px solid var(--glow-color);
+  background-color: var(--btn-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+
+  margin-left: 50%;
+  margin-left: 50%;
+  font-size: 10px;
+  margin-top: 10px;
+  border: 5px solid #0c66b6;
+  align-items: center;
+  width: 200px;
+  border-radius: 10px;
+  background-color: #157edb;
+  transition: all 0.5s;
+}
+.message {
+  margin: 0;
+  margin-left: 15px;
+}
+#message-input {
+  color: white;
+}
+#message-input,
+button {
+  margin: 10px;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 10px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  position: relative;
+  transition: all 0.5s;
+}
+
+#message-input:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+button:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+#message-input:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
+button:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
+
+@media screen and (min-width: 640px) {
+  .divMessage,
+  .divMessageYou {
+    font-size: 20px;
+  }
+
+  #message-input {
+    font-size: 13px;
+    width: 250px;
+    height: 35px;
+  }
+  button {
+    font-size: 12px;
+  }
+  button:hover {
+    font-size: 15px;
+  }
+  #message-input:hover {
+    font-size: 15px;
+  }
+  .divMessageYou:hover {
+    font-size: 25px;
+  }
+  .divMessage:hover {
+    font-size: 25px;
+  }
+  .UserConnectedClass:hover {
+    font-size: 20px;
+  }
+}
+
+.UserConnectedClass {
+  transition: all 0.5s;
+  margin-left: 80px;
+  color: white;
+  text-shadow: 0 0 15px wheat;
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application de chat Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <div id="chat-box"></div>
+    <div class="chatEntry">
+      <input
+        type="text"
+        id="username-input"
+        placeholder="Entrez votre nom d'utilisateur"
+      />
+      <input
+        type="text"
+        id="message-input"
+        placeholder="Entrez votre message"
+      />
+      <button onclick="sendMessage()">Envoyer</button>
+    </div>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDJdM4UakUouxxpaRWy8xrg4DedIkpbxZM",
+        authDomain: "test-4c047.firebaseapp.com",
+        projectId: "test-4c047",
+        storageBucket: "test-4c047.appspot.com",
+        messagingSenderId: "941171550413",
+        appId: "1:941171550413:web:30ce3d3ef6642119376184",
+        measurementId: "G-BY40540J05",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      // Obtenez une référence à la base de données Firestore
+      const db = firebase.firestore();
+
+      function sendMessage() {
+        const usernameInput = document.getElementById("username-input");
+        const messageInput = document.getElementById("message-input");
+
+        const username = "pouximixi"; //usernameInput.value;
+        const message = messageInput.value;
+
+        // Vérifiez si le message et le nom d'utilisateur ne sont pas vides
+        if (message.trim() !== "" && username.trim() !== "") {
+          // Ajoutez le message à la collection "messages" dans Firestore
+          db.collection("messages").add({
+            text: message,
+            username: username,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+
+          // Effacez le champ de texte après l'envoi
+          //usernameInput.value = "";
+          messageInput.value = "";
+        }
+      }
+
+      // Récupérez les messages initiaux puis écoutez les mises à jour en temps réel
+      const chatBox = document.getElementById("chat-box");
+      const messagesRef = db.collection("messages");
+
+      // Écoutez les nouvelles messages et mettez à jour l'interface utilisateur en temps réel
+      messagesRef.orderBy("timestamp").onSnapshot((snapshot) => {
+        // Effacez le contenu actuel de la boîte avant d'ajouter de nouveaux éléments
+        //chatBox.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+          const message = doc.data();
+          const messageElement = document.createElement("div");
+          if (
+            message.username == document.getElementById("username-input").value
+          ) {
+            messageElement.classList.add("divMessageYou");
+          } else {
+            messageElement.classList.add("divMessage");
+          }
+
+          // Créez trois éléments <p> avec le username, la date et le message
+          const elementsData = [
+            `de : ${message.username} à : ${formatDate(message.timestamp)}`,
+            message.text,
+          ];
+          const messageClass = ["message1", "message2"];
+          const div = document.createElement("p");
+
+          for (let i = 0; i < elementsData.length; i++) {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = elementsData[i];
+            paragraph.classList.add("message");
+
+            // Ajoutez chaque paragraphe à la boîte du message
+            div.appendChild(paragraph);
+            messageElement.appendChild(div);
+          }
+
+          // Ajoutez la boîte du message à la boîte principale du chat
+          chatBox.appendChild(messageElement);
+        });
+      });
+
+      // Fonction pour formater la date et l'heure
+      function formatDate(timestamp) {
+        if (timestamp && timestamp.seconds) {
+          const date = new Date(timestamp.seconds * 1000);
+          return date.toLocaleString(); // Vous pouvez personnaliser le format selon vos besoins
+        } else {
+          return "Date non disponible";
+        }
+      }
+    </script>
+
+    <style>
+      body {
+        background-color: #333334;
+      }
+
+      .chatEntry {
+        margin: 10px auto;
+        padding: 10px;
+        text-align: center; /* Center text inside the div */
+        width: 80%; /* Adjust the width to your preference */
+      }
+
+      .divMessage {
+        margin-left: 50%;
+        margin-left: 50%;
+        font-size: 10px;
+        margin: auto;
+        margin-top: 10px;
+        border: 5px solid #5a5a5c;
+        align-items: center;
+        width: 200px;
+        border-radius: 10px;
+        background-color: #67676d;
+      }
+
+      .divMessageYou {
+        margin-left: 50%;
+        margin-left: 50%;
+        font-size: 10px;
+        margin-top: 10px;
+        border: 5px solid #0c66b6;
+        align-items: center;
+        width: 200px;
+        border-radius: 10px;
+        background-color: #157edb;
+      }
+      .message {
+        margin: 0;
+        margin-left: 15px;
+      }
+    </style>
+  </body>
+</html>

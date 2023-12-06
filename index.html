@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style/index.css" rel="stylesheet" type="text/css" />
+    <title>Connexion</title>
+    <!-- requieremnt javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <form>
+        <span class="text-center">connexion</span>
+        <div class="input-container">
+          <input type="mail" required="" id="email" />
+          <label>Nom d'utilisateur</label>
+        </div>
+        <div class="input-container">
+          <input type="password" required="" id="password" />
+          <label>Mot de passe</label>
+        </div>
+        <p style="color: red" id="TextError">
+          Erreur d'autentification (surement une erreur dans le mot de passe ou
+          l'utilisateur)
+        </p>
+        <button type="button" class="btn" onclick="login()">valider</button>
+      </form>
+    </div>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

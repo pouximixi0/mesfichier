@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="style/chatMenu.css" rel="stylesheet" type="text/css">
+  <link href="style/chat.css" rel="stylesheet" type="text/css">
+
+  <title>Console de gestion</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  
+</head>
+<body>
+  <ul class="side-menu">
+    <li><a href="index2.html"><img src="test.png">home</a></li>
+    <li><a href="chat.html", id="chatPage"><img src="chat.png"></span>chat</a></li>
+    <li><a href="#"><span class="fa fa-font"></span>truc</a></li>
+    <li><a href="#"><span class="fa fa-caret-square-o-right"></span>bidule</a></li>
+    <li><a href="#"><span class="fa fa-check-square"></span>test</a></li>
+    <li><a href="#"><span class="fa  fa-square"></span>value</a></li>
+    <li><a href="#" id="deconnexion" onclick="deleteCookie()"><img src="deconnexion.png"><span class="fa fa-bars"></span>deconnection</a></li>
+</ul>
+  <div id="userConnectedDiv"></div>
+  <div id="chat-box"></div> 
+    <div class ="chatEntry">
+    <textarea type="text" id="message-input" placeholder="Entrez votre message"></textarea>
+    <button onclick="sendMessage()">Envoyer</button>
+  </div>
+  <script src="js/index2.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
